@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <form action="http://localhost:8000/form_get" method="get">
+      <p>GETで送る</p>
+      <p>ユーザー名<input type="text" name="username"></p>
+      <p>年齢<input type="text" name="age"></p>
+      <input type="submit" value="送信">
+    </form>
+  </div>
+  <div>
+    <form action="http://localhost:8000/form_post" method="post">
+      <p>POSTで送る</p>
+      <p>ユーザー名<input type="text" name="username"></p>
+      <p>年齢<input type="text" name="age"></p>
+      <input type="submit" value="送信">
+    </form>
+  </div>
+</body>
+</html>
