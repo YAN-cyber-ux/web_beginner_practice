@@ -40,6 +40,27 @@ server.mount_proc("/form_post") do |req, res|
   res.body = body
 end
 
+foods = [
+  { id: 1, name: "りんご", category: "fruits" },
+  { id: 2, name: "バナナ", category: "fruits" },
+  { id: 3, name: "いちご", category: "fruits" },
+  { id: 4, name: "トマト", category: "vegetables" },
+  { id: 5, name: "キャベツ", category: "vegetables" },
+  { id: 6, name: "レタス", category: "vegetables" },
+]
+
+server.mount_proc("/foods") do |req, res|
+  template = ERB.new( File.read('./foods/index.erb') )
+  if req.query[:foods] == "fruits"
+    @foods = foods.select { |food| food[:category] == "fruits" }
+  elsif req.query[:foods] == "vegetables"
+    @foods = foods.select { |food| food[:category] == "vegetables" }
+  else
+    @foods = foods
+  end
+  res.body << template.result( binding )
+end
+
 WEBrick::HTTPServlet::FileHandler.add_handler("erb", WEBrick::HTTPServlet::ERBHandler)
 server.config[:MimeTypes]["erb"] = "text/html"
 
@@ -48,6 +69,7 @@ server.mount_proc("/hello") do |req, res|
   @now = Time.now
   res.body << template.result( binding )
 end
+
 
 
 trap(:INT){
