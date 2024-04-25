@@ -45,7 +45,7 @@ server.config[:MimeTypes]["erb"] = "text/html"
 
 server.mount_proc("/hello") do |req, res|
   template = ERB.new( File.read('hello.erb') )
-  time = Time.new
+  @now = Time.now
   res.body << template.result( binding )
 end
 
