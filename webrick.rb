@@ -17,7 +17,6 @@ server.mount_proc("/time") do |req, res|
 end
 
 server.mount_proc("/form_get") do |req, res|
-  req.query
   body = "<html><head><meta charset=\"utf-8\"/></head><body>"
   body += "<p>こんにちは、#{ req.query }</p>"
   body += "<p>あなたの名前は#{ req.query['username'] }ですね。</p>"
@@ -51,6 +50,7 @@ foods = [
 
 server.mount_proc("/foods") do |req, res|
   template = ERB.new( File.read('./foods/index.erb') )
+  
   if req.query[:foods] == "fruits"
     @foods = foods.select { |food| food[:category] == "fruits" }
   elsif req.query[:foods] == "vegetables"
