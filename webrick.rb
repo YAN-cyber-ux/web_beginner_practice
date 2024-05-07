@@ -52,10 +52,11 @@ foods = [
 server.mount_proc("/foods") do |req, res|
   template = ERB.new( File.read('./foods/index.erb') )
   
-  binding.break
-  if req.query[:foods] == "fruits"
+  p req.query
+  p req.query['foods']
+  if req.query['foods'] == "fruits"
     @foods = foods.select { |food| food[:category] == "fruits" }
-  elsif req.query[:foods] == "vegetables"
+  elsif req.query['foods'] == "vegetables"
     @foods = foods.select { |food| food[:category] == "vegetables" }
   else
     @foods = foods
