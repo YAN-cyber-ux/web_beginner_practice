@@ -52,8 +52,6 @@ foods = [
 server.mount_proc("/foods") do |req, res|
   template = ERB.new( File.read('./foods/index.erb') )
   
-  p req.query
-  p req.query['foods']
   if req.query['foods'] == "fruits"
     @foods = foods.select { |food| food[:category] == "fruits" }
   elsif req.query['foods'] == "vegetables"
