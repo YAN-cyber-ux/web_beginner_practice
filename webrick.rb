@@ -54,10 +54,13 @@ server.mount_proc("/foods") do |req, res|
   
   if req.query['foods'] == "fruits"
     @foods = foods.select { |food| food[:category] == "fruits" }
+    @category = "fruits"
   elsif req.query['foods'] == "vegetables"
     @foods = foods.select { |food| food[:category] == "vegetables" }
+    @category = "vegetables"
   else
     @foods = foods
+    @category = "all"
   end
   res.body << template.result( binding )
 end

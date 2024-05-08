@@ -7,9 +7,16 @@
 
     <form action="/foods" method="post" >
       <select name="foods">
-        <option value="all" >全て</option>
-        <option value="fruits" selected >フルーツ</option>
-        <option value="vegetables">野菜</option>
+        <!-- htmlの中にrubyのコードを埋め込む -->
+        <option value="all" <% if @category == "all" %> selected <% end %> >
+          全て
+        </option> 
+        <option value="fruits" <% if @category == "fruits" %> selected <% end %> >
+          フルーツ
+        </option>
+        <option value="vegetables" <% if @category == "vegetables" %> selected <% end %> >
+          野菜
+        </option>
       </select>
       <input type="submit" value="検索" >
     </form>
@@ -21,3 +28,5 @@
       </ul>
   </body>
 </html>
+
+<!-- rubyのコードの中にHTMLを埋め込んでも問題ないのか?後で質問する -->
