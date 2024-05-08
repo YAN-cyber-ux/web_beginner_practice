@@ -6,21 +6,14 @@
     <h1>Foods一覧</h1>
 
     <form action="/foods" method="post" >
-      <select name="foods">
+      <select name="category">
         <!-- htmlの中にrubyのコードを埋め込む -->
-        <option value="all" <% if @category == "all" %> selected <% end %> >
-          全て
-        </option> 
-        <option value="fruits" <% if @category == "fruits" %> selected <% end %> >
-          フルーツ
-        </option>
-        <option value="vegetables" <% if @category == "vegetables" %> selected <% end %> >
-          野菜
-        </option>
+        <option value="all" <%= @selected_category == "all" ? "selected" : "" %>>全て</option>
+        <option value="fruits" <%= @selected_category == "fruits" ? "selected" : "" %>>果物</option>
+        <option value="vegetables" <%= @selected_category == "vegetables" ? "selected" : "" %>>野菜</option>
       </select>
-      <input type="submit" value="検索" >
+      <button type="search">検索</button>
     </form>
-    <%= req.query %>
       <ul>
         <% @foods.each do |food| %>
           <li><%= food[:name] %></li>
